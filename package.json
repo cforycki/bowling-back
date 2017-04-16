@@ -1,0 +1,19 @@
+{
+  "name": "bowling-back",
+  "version": "1.0.0",
+  "description": "Bowling scores server",
+  "author": "Christophe FORYCKI",
+  "license": "ISC",
+  "scripts": {
+    "start": "nodemon ./dist/app.js"
+  },
+  "devDependencies": {
+    "typescript": "^2.3.0"
+  },
+  "dependencies": {
+    "@types/node": "^7.0.12",
+    "@types/underscore": "^1.8.0",
+    "express": "^4.15.2",
+    "underscore": "^1.8.3"
+  }
+}
