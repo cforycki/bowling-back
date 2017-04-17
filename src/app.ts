@@ -1,6 +1,6 @@
 import * as _ from 'underscore';
-import AllowCrossDomain from './middleware/AllowCrossDomain';
-import Middleware from './middleware/Middleware';
+import AllowCrossDomain from './middlewares/AllowCrossDomain';
+import Middleware from './middlewares/Middleware';
 import GamesRouter from './routes/GamesRouter';
 import Router from './routes/Router';
 import express = require('express');
