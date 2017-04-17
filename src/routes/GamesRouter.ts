@@ -1,12 +1,29 @@
-import * as games from '../json/games.json';
+import {Connection} from 'typeorm';
+import {Game} from '../entities/Game';
 import {Router} from './Router';
+import {Frame} from '../entities/Frame';
+import * as _ from 'underscore';
 
 export class GamesRouter extends Router {
+
     root: string = '/games';
 
-    constructor() {
-        super();
-        this.router.get('/', (req: any, res: any) => res.send(games));
+    initRoutes(connection: Connection) {
+        this.router.get('/', async (req: any, res: any) => {
+            let gameRepository = connection.getRepository(Game);
+            let games = await gameRepository.createQueryBuilder('games')
+                                            .innerJoinAndSelect('games.frames', 'frame')
+                                            .getMany();
+            res.send(games);
+        });
+
+        this.router.put('/', async (req: any, res: any) => {
+            let frames: Array<Frame> = JSON.parse(req.body.frames);
+            let game = new Game({frames});
+            let gameRepository = connection.getRepository(Game);
+            await gameRepository.persist(game);
+            res.send(game);
+        });
     }
 }
 
