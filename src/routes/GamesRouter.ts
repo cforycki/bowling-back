@@ -17,7 +17,7 @@ export class GamesRouter extends Router {
             res.send(games);
         });
 
-        this.router.put('/', async (req: any, res: any) => {
+        this.router.post('/', async (req: any, res: any) => {
             let frames: Array<Frame> = JSON.parse(req.body.frames);
             let game = new Game({frames});
             let gameRepository = connection.getRepository(Game);
