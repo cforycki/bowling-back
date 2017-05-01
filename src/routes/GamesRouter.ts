@@ -38,8 +38,8 @@ export class GamesRouter extends Router {
         });
 
         this.router.post('/', async (req: Request, res: Response) => {
-            let frames: Array<Frame> = JSON.parse(req.body.frames);
-            let game = new Game({frames});
+            let gameFromJSON = JSON.parse(req.body.game);
+            let game = new Game(gameFromJSON);
             let gameRepository = connection.getRepository(Game);
             await gameRepository.persist(game);
 
